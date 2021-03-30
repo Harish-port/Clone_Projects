@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 export default function Header() {
   return (
     <Container>
@@ -13,8 +15,11 @@ export default function Header() {
         />
       </HeaderLogo>
       <HeaderOptionAddress>
-        <OptionLineOne>Hello</OptionLineOne>
-        <OptionLineOne>Select Your Address</OptionLineOne>
+        <LocationOnIcon />
+        <HeaderOption>
+          <OptionLineOne>Hello</OptionLineOne>
+          <OptionLineTwo>Select Your Address</OptionLineTwo>
+        </HeaderOption>
       </HeaderOptionAddress>
       <HeaderSearch>
         <HeaderSearchInput type="text" />
@@ -22,6 +27,20 @@ export default function Header() {
           <SearchIcon />
         </HeaderSearchIconContainer>
       </HeaderSearch>
+      <HeaderNavItems>
+        <HeaderOption>
+          <OptionLineOne>Hello,Harish</OptionLineOne>
+          <OptionLineTwo>Account & Lists</OptionLineTwo>
+        </HeaderOption>
+        <HeaderOption>
+          <OptionLineOne>Returns</OptionLineOne>
+          <OptionLineTwo>& Orders</OptionLineTwo>
+        </HeaderOption>
+        <HeaderOptionCart>
+          <ShoppingCartIcon />
+          <CartCount>5</CartCount>
+        </HeaderOptionCart>
+      </HeaderNavItems>
     </Container>
   );
 }
@@ -31,6 +50,7 @@ const Container = styled.div`
   background-color: #0f1111;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: white;
 `;
 const HeaderLogo = styled.div`
@@ -39,10 +59,56 @@ const HeaderLogo = styled.div`
     margin-left: 11px;
   }
 `;
-const HeaderOptionAddress = styled.div``;
-const OptionLineOne = styled.div``;
-const HeaderSearch = styled.div`
-display:flex;
+const HeaderOptionAddress = styled.div`
+  padding-left: 9px;
+  display: flex;
+  align-items: center;
 `;
-const HeaderSearchInput = styled.input``;
-const HeaderSearchIconContainer = styled.div``;
+const OptionLineOne = styled.div``;
+
+const OptionLineTwo = styled.div`
+  font-weight: 700;
+`;
+const HeaderSearch = styled.div`
+  display: flex;
+  flew-grow: 1;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: 4px;
+  background-color:white;
+  :focus-within{
+    box-shadow:0 0 0 3px #F90;
+  }
+`;
+const HeaderSearchInput = styled.input`
+  flex-grow: 1;
+  border:0;
+  :focus {
+    outline: none;
+  }
+`;
+const HeaderSearchIconContainer = styled.div`
+  background-color: #febd69;
+  width: 45px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const HeaderNavItems = styled.div`
+  display: flex;
+`;
+
+const HeaderOption = styled.div`
+  padding: 10px 9px 10px 9px;
+`;
+
+const HeaderOptionCart = styled.div`
+  display: flex;
+  align-items: center;
+  padding-right: 9px;
+`;
+const CartCount = styled.div`
+padding-left:4px;
+`;
