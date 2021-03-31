@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <Container>
@@ -36,9 +37,12 @@ export default function Header() {
           <OptionLineOne>Returns</OptionLineOne>
           <OptionLineTwo>& Orders</OptionLineTwo>
         </HeaderOption>
+
         <HeaderOptionCart>
-          <ShoppingCartIcon />
-          <CartCount>5</CartCount>
+          <Link to="/cart">
+            <ShoppingCartIcon />
+            <CartCount>5</CartCount>
+          </Link>
         </HeaderOptionCart>
       </HeaderNavItems>
     </Container>
@@ -71,19 +75,19 @@ const OptionLineTwo = styled.div`
 `;
 const HeaderSearch = styled.div`
   display: flex;
-  flew-grow: 1;
+  flex-grow: 1;
   height: 40px;
   border-radius: 4px;
   overflow: hidden;
   margin-left: 4px;
-  background-color:white;
-  :focus-within{
-    box-shadow:0 0 0 3px #F90;
+  background-color: white;
+  :focus-within {
+    box-shadow: 0 0 0 3px #f90;
   }
 `;
 const HeaderSearchInput = styled.input`
   flex-grow: 1;
-  border:0;
+  border: 0;
   :focus {
     outline: none;
   }
@@ -106,9 +110,14 @@ const HeaderOption = styled.div`
 
 const HeaderOptionCart = styled.div`
   display: flex;
-  align-items: center;
-  padding-right: 9px;
+  a {
+    display: flex;
+    align-items: center;
+    padding-right: 9px;
+    color: white;
+    text-decoration: none;
+  }
 `;
 const CartCount = styled.div`
-padding-left:4px;
+  padding-left: 4px;
 `;
