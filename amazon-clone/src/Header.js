@@ -8,12 +8,14 @@ export default function Header() {
   return (
     <Container>
       <HeaderLogo>
+        <Link to="/">
         <img
           src={
             "https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white-768x232.png"
           }
           alt="amazon-logo"
         />
+        </Link>
       </HeaderLogo>
       <HeaderOptionAddress>
         <LocationOnIcon />
