@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Product() {
   return (
     <Container>
-      <Title>IPad Pro</Title>
+      <Title>New Apple iPhone 11 (64GB) - Black</Title>
       <Price>$1213</Price>
       <Rating>*****</Rating>
       <Image src="https://images-na.ssl-images-amazon.com/images/I/71i2XhHU3pL._SL1500_.jpg"/>
