@@ -1,14 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import CartItems from "./CartItems";
+import CartTotal from "./CartTotal";
 
 export default function Cart() {
-    return (
-        <Container>
-            <CardItems/>
-            <CardTotal/>
-        </Container>
-    )
+  return (
+    <Container>
+      <CartItems />
+      <CartTotal />
+    </Container>
+  );
 }
-  const Container = styled.div``
-  const CardItems = styled.div``
-  const CardTotal = styled.div``
+const Container = styled.div`
+  display: flex;
+  padding:14px 18px 0 18px; 
+`;
