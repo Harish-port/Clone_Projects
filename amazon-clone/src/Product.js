@@ -1,8 +1,27 @@
 import React from "react";
 import styled from "styled-components";
+import { db } from "./firebase";
 
-export default function Product({title,price,rating,image,id}) {
-  console.log();
+export default function Product({ title, price, rating, image, id }) {
+  const addToCart = () => {
+    console.log(id);
+    const cartItem = db.collection("cartItems").doc(id);
+    cartItem.get().then((doc) => {
+      console.log(doc, "doc");
+      if (doc.exists) {
+        cartItem.update({
+          quantity: doc.data().quantity + 1,
+        });
+      } else {
+        db.collection("cartItems").doc(id).set({
+          name: title,
+          image: image,
+          price: price,
+          quantity: 1,
+        });
+      }
+    });
+  };
   return (
     <Container>
       <Title>{title}</Title>
@@ -16,7 +35,7 @@ export default function Product({title,price,rating,image,id}) {
       </Rating>
       <Image src={image} />
       <ActionSection>
-        <AddToCartButton>Add to Cart</AddToCartButton>
+        <AddToCartButton onClick={addToCart}>Add to Cart</AddToCartButton>
       </ActionSection>
     </Container>
   );
@@ -48,8 +67,10 @@ const AddToCartButton = styled.button`
   width: 100px;
   height: 30px;
   background-color: #f0c14b;
+  margin-top: 10px;
   border: 2px solid #a88734;
   border-radius: 2px;
+  cursor: pointer;
 `;
 const ActionSection = styled.div`
   display: grid;
