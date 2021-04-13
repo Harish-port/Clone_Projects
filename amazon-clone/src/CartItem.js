@@ -1,11 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { db } from "./firebase";
 
 export default function CartItem({ id, item }) {
+  const deleteItem = (e) => {
+    e.preventDefault();
+    db.collection("cartItems").doc(id).delete()
+  }
   let options = [];
   for (let i = 0; i < Math.max(item.quantity + 1, 20); i++) {
     options.push(<option value={i}>Qty:{i}</option>);
   }
+  const changeQuantity = (newQuantity) => {
+    db.collection("cartItems")
+      .doc(id)
+      .update({
+        quantity: parseInt(newQuantity),
+      });
+  };
   return (
     <Container>
       <ImageContainer>
@@ -17,11 +29,14 @@ export default function CartItem({ id, item }) {
         </CartItemInfoTop>
         <CartItemInfoBottom>
           <CartItemQuantityContainer>
-            <select value={item.quantity}>
+            <select
+              value={item.quantity}
+              onChange={(e) => changeQuantity(e.target.value)}
+            >
               {options}
             </select>
           </CartItemQuantityContainer>
-          <CartItemDeleteContainer>Delete</CartItemDeleteContainer>
+          <CartItemDeleteContainer onClick={deleteItem}>Delete</CartItemDeleteContainer>
         </CartItemInfoBottom>
       </CartItemInfo>
       <CartItemPrice>{item.price}</CartItemPrice>
@@ -33,7 +48,7 @@ const Container = styled.div`
   padding-top: 12px;
   padding-bottom: 12px;
   display: flex;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid #ddd;
 `;
 const ImageContainer = styled.div`
   width: 180px;
@@ -62,16 +77,15 @@ const CartItemInfoBottom = styled.div`
   align-items: center;
 `;
 const CartItemQuantityContainer = styled.div`
-select{
-  border-radius: 7px;
-  background-color: #F0F2F2;
-  padding:8px;
-  box-shadow: 0 2px 5px rgba(15,17,17,.15);
-  :focus{
-    outline:none;
+  select {
+    border-radius: 7px;
+    background-color: #f0f2f2;
+    padding: 8px;
+    box-shadow: 0 2px 5px rgba(15, 17, 17, 0.15);
+    :focus {
+      outline: none;
+    }
   }
-}
-
 `;
 const CartItemDeleteContainer = styled.div`
   color: #007185;

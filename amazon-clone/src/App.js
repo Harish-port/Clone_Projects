@@ -3,6 +3,7 @@ import Cart from "./Cart";
 import {useState,useEffect} from 'react'
 import Header from "./Header";
 import Home from "./Home";
+import Login from "./Login";
 import styled from "styled-components";
 import { db } from "./firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -24,8 +25,11 @@ function App() {
   return (
     <Router>
       <Container>
-        <Header />
+        <Header cartItems={cartItems} />
         <Switch>
+          <Route path="/login" >
+            <Login/>
+          </Route>
           <Route path="/cart">
             <Cart cartItems={cartItems} />
           </Route>
