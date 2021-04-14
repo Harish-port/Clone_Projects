@@ -4,7 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
-export default function Header({ cartItems }) {
+export default function Header({ cartItems ,user ,signOut}) {
   const getCount = () => {
     let count = 0;
     console.log(cartItems,"inheaders");
@@ -29,8 +29,8 @@ export default function Header({ cartItems }) {
       </HeaderLogo>
       <HeaderOptionAddress>
         <LocationOnIcon />
-        <HeaderOption>
-          <OptionLineOne>Hello</OptionLineOne>
+        <HeaderOption >
+          <OptionLineOne>Hello, {user.name}</OptionLineOne>
           <OptionLineTwo>Select Your Address</OptionLineTwo>
         </HeaderOption>
       </HeaderOptionAddress>
@@ -41,8 +41,8 @@ export default function Header({ cartItems }) {
         </HeaderSearchIconContainer>
       </HeaderSearch>
       <HeaderNavItems>
-        <HeaderOption>
-          <OptionLineOne>Hello,Harish</OptionLineOne>
+        <HeaderOption onClick={signOut}>
+          <OptionLineOne>Hello,{user.name}</OptionLineOne>
           <OptionLineTwo>Account & Lists</OptionLineTwo>
         </HeaderOption>
         <HeaderOption>
@@ -117,6 +117,7 @@ const HeaderNavItems = styled.div`
 
 const HeaderOption = styled.div`
   padding: 10px 9px 10px 9px;
+  cursor:pointer;
 `;
 
 const HeaderOptionCart = styled.div`

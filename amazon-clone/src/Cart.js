@@ -17,7 +17,7 @@ export default function Cart({ cartItems }) {
     cartItems.forEach((item) => {
       //add the quantity of the cart item to the total
       count += item.product.quantity;
-    });
+    }); 
     return count;
   };
   return (
